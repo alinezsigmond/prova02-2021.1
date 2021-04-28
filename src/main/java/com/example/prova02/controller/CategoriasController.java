@@ -28,4 +28,13 @@ public class CategoriasController {
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(e.getMessage()).build();
         }
     }
+
+    @GET
+    @Path("criatabela")
+    @Produces("application/json")
+    public Response criaTabela() {
+        CategoriasDAO cDAO = new CategoriasDAO();
+        cDAO.criaTabelaCategorias();
+        return Response.ok(new Gson().toJson("Tabela CATEGORIAS criada com sucesso!")).build();
+    }
 }

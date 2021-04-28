@@ -1,7 +1,6 @@
 package com.example.prova02.controller;
 
 import com.example.prova02.DAO.FilmesDAO;
-import com.example.prova02.model.Categorias;
 import com.example.prova02.model.Filmes;
 import com.google.gson.Gson;
 
@@ -28,5 +27,14 @@ public class FilmesController {
         } catch (Exception e) {
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(e.getMessage()).build();
         }
+    }
+
+    @GET
+    @Path("criatabela")
+    @Produces("application/json")
+    public Response criaTabela() {
+        FilmesDAO fDAO = new FilmesDAO();
+        fDAO.criaTabelaFilmes();
+        return Response.ok(new Gson().toJson("Tabela FILMES criada com sucesso!")).build();
     }
 }
